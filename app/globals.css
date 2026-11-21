@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand: DEMER ocean blue (matches shop.demer.health mark) */
+  --color-brand-50: #eef4fb;
+  --color-brand-100: #dce8f5;
+  --color-brand-200: #b9d1eb;
+  --color-brand-500: #2a6cb0;
+  --color-brand-600: #1c569a;
+  --color-brand-700: #0e3f7a;
+  --color-brand-900: #061f45;
+
+  /* Neutrals: warm ink on off-white */
+  --color-ink: #1b1516;
+  --color-ink-soft: #4b4345;
+  --color-ink-mute: #7a7072;
+  --color-paper: #faf8f4;
+  --color-paper-card: #ffffff;
+  --color-paper-line: #ece6df;
+
+  /* Accent: warm amber */
+  --color-amber-400: #f2b53c;
+  --color-amber-500: #e19a12;
+
+  --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+}
+
+html,
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+/* Large, responsive headline */
+@utility text-display {
+  /* Scales with width, capped by height so header + hero + footer fit one screen */
+  font-size: clamp(2rem, min(1.2rem + 4.5vw, 8.5vh), 5.75rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
