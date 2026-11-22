@@ -5,10 +5,10 @@
   --color-brand-50: #eef4fb;
   --color-brand-100: #dce8f5;
   --color-brand-200: #b9d1eb;
-  --color-brand-500: #2a6cb0;
-  --color-brand-600: #1c569a;
-  --color-brand-700: #0e3f7a;
-  --color-brand-900: #061f45;
+  --color-brand-500: #4a86c6;
+  --color-brand-600: #2a6cb0; /* primary = logo blue */
+  --color-brand-700: #1f5891; /* hover / pressed */
+  --color-brand-900: #0e3f7a;
 
   /* Neutrals: warm ink on off-white */
   --color-ink: #1b1516;
@@ -22,8 +22,51 @@
   --color-amber-400: #f2b53c;
   --color-amber-500: #e19a12;
 
-  --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-sans: var(--font-space), system-ui, sans-serif;
+}
+
+/* Grain card, same recipe as demer.health (light theme): warm paper + fractal-noise texture */
+@utility grain-card {
+  background-color: #f1e6cf;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.32 0 0 0 0 0.28 0.6 0 0 0 -0.25'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 120px 120px;
+}
+
+/* Brand-tinted grain card, same as demer.health's research card
+   (`bg-research/15` + `grain-tint` with --grain-color: research blue) */
+/* Element must be positioned (relative/absolute) for the ::before grain layer */
+@utility grain-card-brand {
+  isolation: isolate;
+  background-color: color-mix(in srgb, var(--color-brand-600) 14%, white);
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: var(--color-brand-600);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.32 0 0 0 0 0.28 0.75 0 0 0 -0.25'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mask-size: 120px 120px;
+    mask-position: 47px 71px;
+  }
+}
+
+/* Grain over a solid brand fill (buttons). Same noise as the cards, in a darker brand shade. */
+@utility grain-solid {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: #fff;
+    opacity: 0.4;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.32 0 0 0 0 0.28 1.1 0 0 0 -0.25'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mask-size: 120px 120px;
+  }
 }
 
 html,
@@ -35,8 +78,8 @@ body {
 /* Large, responsive headline */
 @utility text-display {
   /* Scales with width, capped by height so header + hero + footer fit one screen */
-  font-size: clamp(2rem, min(1.2rem + 4.5vw, 8.5vh), 5.75rem);
-  line-height: 1.04;
+  font-size: clamp(1.5rem, min(0.9rem + 3vw, 6.5vh), 4.25rem);
+  line-height: 1.12;
   letter-spacing: -0.03em;
   text-wrap: balance;
 }

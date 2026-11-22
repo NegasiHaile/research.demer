@@ -1,6 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="DEMER research">
-  <g fill="none" stroke="#0E3F7A" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M16 10h14a22 22 0 0 1 0 44H16Z" stroke-width="5"/>
-    <path d="M4 32h14l4-9 6 18 4-9h28" stroke-width="4.5"/>
+  <g transform="translate(5 0) skewX(-10)" fill="#2A6CB0">
+    <!-- Solid bowl of the D -->
+    <path fill-rule="evenodd" d="M28 8h6a24 24 0 0 1 0 48h-6ZM31 19h3a13 13 0 0 1 0 26h-3Z"/>
+    <!-- Left stroke of the D, built from horizontal speed dashes -->
+    <g fill="none" stroke="#2A6CB0" stroke-width="5" stroke-linecap="round">
+      <path d="M16 10.5h12.5M20 17.7h8.5M11 17.7h4M16 24.8h12.5M13 32h15.5M18 39.2h10.5M16 46.3h12.5M7 46.3h4M16 53.5h12.5"/>
+    </g>
+    <!-- Loose dots trailing off the left -->
+    <circle cx="9" cy="10.5" r="2.5"/>
+    <circle cx="8" cy="24.8" r="2.5"/>
+    <circle cx="11" cy="39.2" r="2.5"/>
+    <circle cx="10" cy="53.5" r="2.5"/>
   </g>
 </svg>
